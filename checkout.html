@@ -4,7 +4,7 @@
 <head>
     <title>A2Z Donation Test</title>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <!-- <script src="./main.js" defer></script> -->
 </head>
 
@@ -44,37 +44,37 @@
     </form>
 
     <script>
-
         // checkout script
         (function () {
-            const form = document.getElementById("info-form");
-            const fistNameInput = document.getElementById("donation-form");
-            const lastNameInput = document.getElementById("donation-form");
-            const emailInput = document.getElementById("donation-form");
-            const homeInput = document.getElementById("donation-form");
-            const mobileInput = document.getElementById("donation-form");
+            const form = document.getElementById('info-form');
+            const title = document.title;
+            const fistNameInput = document.getElementById('donation-form');
+            const lastNameInput = document.getElementById('donation-form');
+            const emailInput = document.getElementById('donation-form');
+            const homeInput = document.getElementById('donation-form');
+            const mobileInput = document.getElementById('donation-form');
 
-            form.addEventListener("submit", (e) => {
+            form.addEventListener('submit', (e) => {
                 e.preventDefault();
+                // get the stored session data;
                 const getSssionData = JSON.parse(sessionStorage.getItem('donation-data')) || [];
+                // calculating the total amount of donation
+                let totalDonation = 0;
+                getSssionData.forEach((donationAmount) => {
+                    totalDonation += +donationAmount.amount;
+                });
 
-                console.log(getSssionData.reduce((accumulator, currentValue) => {
-                    return (+accumulator.amount) + (+currentValue.amount);
-                }));
+                // making the network request to CRM
+                const params = `FIELDS[TITLE]=${title}&FIELDS[OPPORTUNITY]=${totalDonation}&FIELDS[UF_CRM_1606121338]=${donationType}&FIELDS[UF_CRM_1605363046]=${donationType}`;
+                axios
+                    .get(
+                        "https://alkhidmatkarachi.bitrix24.com/rest/91/4h655thdss8n2sf1/crm.lead.add.json?" +
+                            params
+                    )
+                    .then((response) => console.log(response.data));
             });
         })();
-
-// drop to alkhidmat crm
-// const params = `FIELDS[TITLE]=${title}&FIELDS[OPPORTUNITY]=${amount}&FIELDS[UF_CRM_1606121338]=${donationType}&FIELDS[UF_CRM_1605363046]=${donationType}`;
-// axios
-//     .get(
-//         "https://alkhidmatkarachi.bitrix24.com/rest/91/4h655thdss8n2sf1/crm.lead.add.json?" +
-//             params
-//     )
-//     .then((response) => console.log(response.data));
-
     </script>
-
 </body>
 
 </html>
