@@ -1,0 +1,117 @@
+/* ========= CUSTOM DONATION FORM START ==========*/
+#donation-form {
+    background-color: #fff;
+    padding: 25px;
+    max-width: 400px;
+    margin: auto;
+    font-family: "Montserrat", sans-serif;
+    box-sizing: border;
+}
+#info-form {
+    background-color: #fff;
+    padding: 25px;
+    max-width: 400px;
+    margin: auto;
+    font-family: "Montserrat", sans-serif;
+    box-sizing: border;
+}
+
+.input-group {
+    display: flex;
+}
+
+.input-group input,
+.input-group select {
+    flex: 1;
+    margin: 7px 0px;
+    border: 1px solid #777;
+    padding: 14px 8px;
+    font-size: 14px;
+}
+
+.input-group input:placeholder {
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+}
+input#amount {
+    height: 25px;
+    font-size: 25px;
+}
+input#amount::placeholder {
+    font-size: 25px;
+    color: #a7a7a7;
+    margin: 0;
+    padding: 0;
+}
+
+input:focus,
+.input-group select:focus {
+    outline: none;
+    border: 2px solid #333;
+}
+
+.radio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+    margin: 10px 0px;
+}
+
+.radio-group {
+    background-color: #eee;
+}
+
+.radio-group input[type="radio"] {
+    display: none;
+}
+
+.radio-group label {
+    display: block;
+    padding: 12px 10px;
+    transition: 0.5s;
+    margin: 0 !important;
+}
+
+.radio-group label::after {
+    content: "\2713";
+    display: inline-block;
+    font-weight: 500;
+    margin-left: 10px;
+    visibility: hidden;
+}
+
+.radio-group input[type="radio"]:checked + label {
+    background-color: #575757;
+    color: #fff;
+}
+.radio-group input[type="radio"]:checked + label::after {
+    visibility: visible;
+}
+
+#donate-btn-link {
+    text-decoration: none;
+    background-color: #f9cd00;
+    color: #333;
+    font-size: 15px;
+    display: block;
+    text-align: center;
+    padding: 14px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+input#donate-btn {
+    box-shadow: none;
+    border: none;
+    background-color: #f9cd00;
+    color: #333;
+    transition: all 0.2s linear;
+    font-family: "MONTSERRAT", sans-serif;
+    border-radius: 0;
+    font-size: 15px;
+    width: 100%;
+    padding: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+/* ========= CUSTOM DONATION FORM ends ==========*/

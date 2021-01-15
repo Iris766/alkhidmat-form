@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>A2Z Donation Test</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css">
+    <!-- <script src="./main.js" defer></script> -->
+</head>
+
+<body>
+    <form id="info-form">
+        <h2 style="color: #333">Your Information</h2>
+        <div class="input-group">
+            <input type="text" class="donation-input" id="first-name" placeholder="First Name*" required />
+        </div>
+        <div class="input-group">
+            <input type="text" class="donation-input" id="last-name" placeholder="Last Name*" required />
+        </div>
+        <div class="input-group">
+            <input type="email" class="donation-input" id="email" placeholder="Email Address*" required />
+        </div>
+        <div class="input-group">
+            <input type="text" class="donation-input" id="email" placeholder="Home Phone" required />
+        </div>
+        <div class="input-group">
+            <input type="text" class="donation-input" id="email" placeholder="Mobile Number" required />
+        </div>
+
+        <!--   type of donation   -->
+        <!-- <div class="radio-grid">
+            <div class="radio-group">
+                <input type="radio" name="donation-type" id="zakat" checked="checked" value="89" />
+                <label for="zakat">Zakat</label>
+            </div>
+            <div class="radio-group">
+                <input type="radio" name="donation-type" id="sadqah" value="87" />
+                <label for="sadqah">Sadqah</label>
+            </div>
+        </div> -->
+        <!-- submit btn -->
+        <input type="submit" value="Proceed To Payment" id="donate-btn" />
+        <!-- <a href="./checkout.html" id="donate-btn">Donate</a> -->
+    </form>
+
+    <script>
+
+        // checkout script
+        (function () {
+            const form = document.getElementById("info-form");
+            const fistNameInput = document.getElementById("donation-form");
+            const lastNameInput = document.getElementById("donation-form");
+            const emailInput = document.getElementById("donation-form");
+            const homeInput = document.getElementById("donation-form");
+            const mobileInput = document.getElementById("donation-form");
+
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+                const getSssionData = JSON.parse(sessionStorage.getItem('donation-data')) || [];
+
+                console.log(getSssionData.reduce((accumulator, currentValue) => {
+                    return (+accumulator.amount) + (+currentValue.amount);
+                }));
+            });
+        })();
+
+// drop to alkhidmat crm
+// const params = `FIELDS[TITLE]=${title}&FIELDS[OPPORTUNITY]=${amount}&FIELDS[UF_CRM_1606121338]=${donationType}&FIELDS[UF_CRM_1605363046]=${donationType}`;
+// axios
+//     .get(
+//         "https://alkhidmatkarachi.bitrix24.com/rest/91/4h655thdss8n2sf1/crm.lead.add.json?" +
+//             params
+//     )
+//     .then((response) => console.log(response.data));
+
+    </script>
+
+</body>
+
+</html>

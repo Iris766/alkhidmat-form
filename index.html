@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>A2Z Donation Test</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css">
+    <!-- <script src="./main.js" defer></script> -->
+</head>
+
+<body>
+    <form id="donation-form">
+        <div class="input-group">
+            <select name="currency" id="currency-type">
+                <option value="PKR">Currency (PKR)</option>
+                <option value="USD">Currency (USD)</option>
+                <option value="NZD">Currency (NZD)</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <input type="number" class="donation-input" id="amount" placeholder="Amount" />
+        </div>
+
+        <!--   type of donation   -->
+        <div class="radio-grid">
+            <div class="radio-group">
+                <input type="radio" name="donation-type" id="zakat" checked="checked" value="89" />
+                <label for="zakat">Zakat</label>
+            </div>
+            <!--  checked once at a time    -->
+            <div class="radio-group">
+                <input type="radio" name="donation-type" id="sadqah" value="87" />
+                <label for="sadqah">Sadqah</label>
+            </div>
+        </div>
+        <!-- submit btn -->
+        <!-- <input type="submit" value="Donate" id="donate-btn" /> -->
+        <div id="donate-btn-link">Donate</div>
+    </form>
+
+    <script>
+        // quick donate function
+        (function () {
+            // const form = document.getElementById("donation-form");
+            const btn = document.getElementById("donate-btn-link");
+            const title = document.title + "Testing A2Z";
+            const amountInput = document.getElementById("amount");
+            const currencyInput = document.getElementById("currency-type");
+
+            let currency = "PKR";
+            let amount = 5000;
+            let donationType = "89";
+
+            const radioBtns = document.querySelectorAll(
+                '.radio-group input[type="radio"]'
+            );
+            radioBtns.forEach((radio) => {
+                radio.addEventListener("change", (e) => {
+                    if (e.srcElement.name === "donation-amount") {
+                        amount = e.target.value;
+                    } else if (e.srcElement.name === "donation-type") {
+                        donationType = e.target.value;
+                    }
+                });
+            });
+
+            currencyInput.addEventListener("change", (e) => {
+                currency = e.target.value;
+            });
+
+            btn.addEventListener("click", function (e) {
+                e.preventDefault();
+                // check if amount is not empty then mutate it
+                if (amountInput.value !== "") {
+                    amount = amountInput.value;
+                }
+                // getting data from session
+                let donationSessionData =
+                    JSON.parse(sessionStorage.getItem("donation-data")) || [];
+
+                const newDoantion = { title, amount, currency, donationType };
+
+                donationSessionData.push(newDoantion);
+
+                sessionStorage.setItem(
+                    "donation-data",
+                    JSON.stringify(donationSessionData)
+                );
+
+                window.location = "http://127.0.0.1:5500/checkout.html";
+            });
+        })();
+    </script>
+</body>
+
+</html>
